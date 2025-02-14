@@ -1,0 +1,19 @@
+FROM php:8.4-fpm-alpine
+
+RUN apk update
+RUN apk add git vim openssl libpq-dev bash
+
+RUN docker-php-ext-install pdo pdo_pgsql
+
+RUN apk add --update linux-headers
+RUN apk add $PHPIZE_DEPS
+
+RUN pecl install xdebug \
+    && docker-php-ext-enable xdebug \
+    && echo "xdebug.mode=coverage" > $PHP_INI_DIR/conf.d/xdebug.ini
+
+RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+RUN rm -rf composer-setup.php && composer config --global repos.packagist composer https://packagist.org
+
+WORKDIR /var/www/html

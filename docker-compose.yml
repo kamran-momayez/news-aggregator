@@ -2,7 +2,7 @@ version: "3"
 services:
 
   postgres:
-    image: postgres:16
+    image: postgres
     container_name: postgres
     environment:
       POSTGRES_DB: db
@@ -21,6 +21,10 @@ services:
       - "8081:80"
     depends_on:
       - php
+
+  redis:
+      image: redis
+      container_name: redis
 
 networks:
   default:

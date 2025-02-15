@@ -24,3 +24,5 @@ yarn-error.log
 
 /docker/data
 /docker/logs
+
+supervisord.pid

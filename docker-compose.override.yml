@@ -6,6 +6,8 @@ services:
       - "5432:5432"
     volumes:
       - ./docker/data/postgres:/var/lib/postgresql/data
+      - ./docker/configs/scripts:/docker-entrypoint-initdb.d
+
   nginx:
     build:
       context: .

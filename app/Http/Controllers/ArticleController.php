@@ -15,7 +15,7 @@ class ArticleController extends Controller
 
     public function index(Request $request): AnonymousResourceCollection
     {
-        $filters = $request->only(['query', 'source', 'category', 'author', 'date', 'news_service']);
+        $filters = $request->only(['source', 'category', 'author', 'date', 'news_service']);
         $articles = $this->service->searchArticles($filters);
 
         return ArticleResource::collection($articles);

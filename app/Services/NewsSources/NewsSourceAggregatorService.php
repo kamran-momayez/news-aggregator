@@ -8,8 +8,8 @@ class NewsSourceAggregatorService
 
     public function __construct(array $selectedSources)
     {
-        foreach ($selectedSources as $source) {
-            $this->sources[] = NewsSourceFactory::create($source);
+        foreach ($selectedSources as $sourceName) {
+            $this->sources[] = NewsSourceFactory::create($sourceName);
         }
     }
 
